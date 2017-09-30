@@ -10,7 +10,7 @@ public class DataBase {
     private static EntityManager manager;
 
     public DataBase() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("ConexaoMySQL");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("ConexaoDB");
         manager = factory.createEntityManager();
     }
     
