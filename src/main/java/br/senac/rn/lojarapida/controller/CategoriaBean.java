@@ -4,7 +4,9 @@ import br.senac.rn.lojarapida.dao.CategoriaDAO;
 import br.senac.rn.lojarapida.model.Categoria;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
+@ViewScoped
 @ManagedBean(name = "categoriaBean")
 public class CategoriaBean {
 
@@ -12,13 +14,22 @@ public class CategoriaBean {
 
     public void salvar() {
         CategoriaDAO dao = new CategoriaDAO();
-        dao.insert(this.categoria);
+        if (this.categoria.getId() == 0) {
+            dao.insert(this.categoria);
+        } else {
+            dao.update(this.categoria);
+        }
         this.categoria = new Categoria();
     }
     
-    public void editar(Categoria categoria) {}
+    public void editar(Categoria categoria) {
+        this.categoria = categoria;
+    }
     
-    public void remover(Categoria categoria) {}
+    public void remover(Categoria categoria) {
+        CategoriaDAO dao = new CategoriaDAO();
+        dao.delete(categoria);
+    }
     
     public List<Categoria> getCategorias() {
         CategoriaDAO dao = new CategoriaDAO();
