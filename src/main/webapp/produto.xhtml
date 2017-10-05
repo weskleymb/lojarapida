@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Produto</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h:form>
+                        <fieldset>
+                            <legend>Dados do Produto</legend>
+                            <div class="form-group">
+                                <h:outputLabel for="nome" value="Nome" />
+                                <h:inputText id="nome" value="#{produtoBean.produto.nome}" styleClass="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel for="categoria" value="Categoria" />
+                                <h:selectOneMenu id="categoria" value="#{produtoBean.produto.categoria}" styleClass="form-control">
+                                    <f:selectItem itemLabel="Selecione uma categoria" itemDisabled="true" />
+                                    <f:selectItems value="#{produtoBean.categorias}" var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel for="preco" value="Preço" />
+                                <h:inputText id="preco" value="#{produtoBean.produto.preco}" styleClass="form-control" />
+                            </div>
+                            <h:commandButton value="Salvar" action="#{produtoBean.salvar}" styleClass="btn btn-primary btn-block" />
+                        </fieldset>
+                    </h:form>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
