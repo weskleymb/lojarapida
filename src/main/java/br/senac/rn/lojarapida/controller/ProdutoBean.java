@@ -14,7 +14,11 @@ public class ProdutoBean {
     
     private Produto produto = new Produto();
     
-    public void salvar() {}
+    public void salvar() {
+        ProdutoDAO dao = new ProdutoDAO();
+        dao.insert(this.produto);
+        this.produto = new Produto();
+    }
 
     public List<Categoria> getCategorias() {
         CategoriaDAO dao = new CategoriaDAO();
