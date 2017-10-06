@@ -16,8 +16,21 @@ public class ProdutoBean {
     
     public void salvar() {
         ProdutoDAO dao = new ProdutoDAO();
-        dao.insert(this.produto);
+        if (this.produto.getId() == 0) {
+            dao.insert(this.produto);
+        } else {
+            dao.update(this.produto);
+        }
         this.produto = new Produto();
+    }
+    
+    public void editar(Produto produto) {
+        this.produto = produto;
+    }
+    
+    public void excluir(Produto produto) {
+        ProdutoDAO dao = new ProdutoDAO();
+        dao.delete(produto);
     }
 
     public List<Categoria> getCategorias() {
