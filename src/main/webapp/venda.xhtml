@@ -14,7 +14,11 @@
                     <p:outputLabel for="dataVenda" value="Data" />
                     <p:calendar id="dataVenda" showOn="button" />
                     <p:outputLabel for="cliente" value="Cliente" />
-                    <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf(cpf)}" var="cliente" itemLabel="#{cliente.nome} - #{cliente.cpf}" converter="clienteConverter" />
+                    <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf}" var="cliente" itemLabel="#{cliente.nome}" converter="clienteConverter" minQueryLength="3" />
+                    <p:panelGrid>
+                        <p:outputLabel for="produto" value="Produto" />
+                        <p:autoComplete id="produto" value="#{vendaBean.produto}" completeMethod="#{vendaBean.getProdutosPorNome}" var="produto" itemLabel="#{produto.nome}" converter="produtoConverter" minQueryLength="3" />
+                    </p:panelGrid>
                 </p:panelGrid>
             </h:form>
         </p:fieldset>
