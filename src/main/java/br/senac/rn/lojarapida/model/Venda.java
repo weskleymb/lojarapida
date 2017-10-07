@@ -1,6 +1,7 @@
 package br.senac.rn.lojarapida.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Venda implements Serializable {
     @ManyToOne
     private Cliente cliente;
     @ManyToMany
-    private List<Produto> produtos;
+    private List<Produto> produtos = new ArrayList<Produto>();
     @Temporal(TemporalType.DATE)
     private Calendar data;
     private float valor;
@@ -111,6 +112,14 @@ public class Venda implements Serializable {
     @Override
     public String toString() {
         return "Venda{" + "id=" + id + ", cliente=" + cliente + ", produtos=" + produtos + ", valor=" + valor + '}';
+    }
+    
+    public void adicionarProduto(Produto produto) {
+        this.produtos.add(produto);
+    }
+    
+    public void removerProduto(Produto produto) {
+        this.produtos.remove(produto);
     }
     
 }

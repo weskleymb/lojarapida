@@ -17,8 +17,22 @@
                     <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf}" var="cliente" itemLabel="#{cliente.nome}" converter="clienteConverter" minQueryLength="3" />
                     <p:panelGrid>
                         <p:outputLabel for="produto" value="Produto" />
-                        <p:autoComplete id="produto" value="#{vendaBean.produto}" completeMethod="#{vendaBean.getProdutosPorNome}" var="produto" itemLabel="#{produto.nome}" converter="produtoConverter" minQueryLength="3" />
+                        <p:autoComplete id="produto" value="#{vendaBean.produto}" completeMethod="#{vendaBean.getProdutosPorNome}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}" converter="produtoConverter" minQueryLength="3" />
+                        <p:commandButton value="Adicionar" action="#{vendaBean.adicionarProduto}" process="@this produto" update="produto formListaProdutos:tabelaProdutos" />
                     </p:panelGrid>
+                    <h:form id="formListaProdutos">
+                        <p:dataTable id="tabelaProdutos" value="#{vendaBean.venda.produtos}" var="produto">
+                            <p:column headerText="Id">
+                                <h:outputText value="#{produto.id}" />
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{produto.nome}" />
+                            </p:column>
+                            <p:column headerText="Preço">
+                                <h:outputText value="#{produto.preco}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
                 </p:panelGrid>
             </h:form>
         </p:fieldset>
