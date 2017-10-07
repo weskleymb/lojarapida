@@ -116,6 +116,7 @@ public class Venda implements Serializable {
     
     public void adicionarProduto(Produto produto) {
         this.produtos.add(produto);
+        this.valor += produto.getPreco();
     }
     
     public void removerProduto(Produto produto) {

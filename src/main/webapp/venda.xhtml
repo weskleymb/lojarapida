@@ -18,7 +18,7 @@
                     <p:panelGrid>
                         <p:outputLabel for="produto" value="Produto" />
                         <p:autoComplete id="produto" value="#{vendaBean.produto}" completeMethod="#{vendaBean.getProdutosPorNome}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}" converter="produtoConverter" minQueryLength="3" />
-                        <p:commandButton value="Adicionar" action="#{vendaBean.adicionarProduto}" process="@this produto" update="produto formListaProdutos:tabelaProdutos" />
+                        <p:commandButton value="Adicionar" action="#{vendaBean.adicionarProduto}" process="@this produto" update="produto formListaProdutos:tabelaProdutos valorVenda" />
                     </p:panelGrid>
                     <h:form id="formListaProdutos">
                         <p:dataTable id="tabelaProdutos" value="#{vendaBean.venda.produtos}" var="produto">
@@ -33,6 +33,8 @@
                             </p:column>
                         </p:dataTable>
                     </h:form>
+                    <p:outputLabel for="valorVenda" value="Valor" />
+                    <h:outputText id="valorVenda" value="#{vendaBean.venda.valor}" />
                 </p:panelGrid>
             </h:form>
         </p:fieldset>
