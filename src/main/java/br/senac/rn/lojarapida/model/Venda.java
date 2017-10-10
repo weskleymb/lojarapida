@@ -24,7 +24,7 @@ public class Venda implements Serializable {
     @ManyToMany
     private List<Produto> produtos = new ArrayList<Produto>();
     @Temporal(TemporalType.DATE)
-    private Calendar data;
+    private Calendar data = Calendar.getInstance();
     private float valor;
 
     public Venda() {}

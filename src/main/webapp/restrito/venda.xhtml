@@ -2,19 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Venda</title>
     </h:head>
     <h:body>
         <p:fieldset legend="Dados da Venda">
-            <h:form>
+            <h:form id="formVenda">
                 <p:panelGrid columns="1">
                     <p:outputLabel for="dataVenda" value="Data" />
-                    <p:calendar id="dataVenda" showOn="button" />
+                    <p:calendar id="dataVenda" value="#{vendaBean.venda.data.time}" showOn="button" />
                     <p:outputLabel for="cliente" value="Cliente" />
-                    <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf}" var="cliente" itemLabel="#{cliente.nome}" converter="clienteConverter" minQueryLength="3" />
+                    <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}" converter="clienteConverter" minQueryLength="3" />
                     <p:panelGrid>
                         <p:outputLabel for="produto" value="Produto" />
                         <p:autoComplete id="produto" value="#{vendaBean.produto}" completeMethod="#{vendaBean.getProdutosPorNome}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}" converter="produtoConverter" minQueryLength="3" />
@@ -35,6 +34,8 @@
                     </h:form>
                     <p:outputLabel for="valorVenda" value="Valor" />
                     <h:outputText id="valorVenda" value="#{vendaBean.venda.valor}" />
+                    <p:commandButton value="Salvar" action="#{vendaBean.salvar}" process="@form" update="@all" />
+
                 </p:panelGrid>
             </h:form>
         </p:fieldset>

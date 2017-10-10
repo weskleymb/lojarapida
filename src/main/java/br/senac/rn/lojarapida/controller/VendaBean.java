@@ -2,6 +2,7 @@ package br.senac.rn.lojarapida.controller;
 
 import br.senac.rn.lojarapida.dao.ClienteDAO;
 import br.senac.rn.lojarapida.dao.ProdutoDAO;
+import br.senac.rn.lojarapida.dao.VendaDAO;
 import br.senac.rn.lojarapida.model.Cliente;
 import br.senac.rn.lojarapida.model.Produto;
 import br.senac.rn.lojarapida.model.Venda;
@@ -14,8 +15,22 @@ import javax.faces.bean.ViewScoped;
 public class VendaBean {
 
     private Venda venda = new Venda();
-    private Cliente cliente;
+    private Cliente cliente = new Cliente();
     private Produto produto = new Produto();
+    
+    public void salvar() {
+        VendaDAO dao = new VendaDAO();
+        venda.setCliente(cliente);
+        System.out.println(venda);
+        dao.insert(venda);
+        limparForm();
+    }
+    
+    private void limparForm() {
+        venda = new Venda();
+        produto = new Produto();
+        cliente = new Cliente();
+    }
     
     public void adicionarProduto() {
         this.venda.adicionarProduto(this.produto);
