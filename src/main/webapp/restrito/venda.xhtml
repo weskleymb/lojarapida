@@ -5,13 +5,14 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Venda</title>
+        <h:outputScript library="js" name="primefaces-calendar-ptbr.js" />
     </h:head>
     <h:body>
         <p:fieldset legend="Dados da Venda">
             <h:form id="formVenda">
                 <p:panelGrid columns="1">
                     <p:outputLabel for="dataVenda" value="Data" />
-                    <p:calendar id="dataVenda" value="#{vendaBean.venda.data.time}" showOn="button" />
+                    <p:calendar id="dataVenda" value="#{vendaBean.venda.data.time}" locale="pt_BR" pattern="dd/MM/yyyy" showOn="button" />
                     <p:outputLabel for="cliente" value="Cliente" />
                     <p:autoComplete id="cliente" value="#{vendaBean.cliente}" completeMethod="#{vendaBean.getClientesPorCpf}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}" converter="clienteConverter" minQueryLength="3" />
                     <p:panelGrid>
